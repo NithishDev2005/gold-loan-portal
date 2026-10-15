@@ -1,0 +1,32 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model LoanScheme {
+  id              String   @id
+  name            String
+  interestRatePa  Float
+  maxLtv          Float
+  tenureMonths    Int
+  repaymentType   String
+  createdAt       DateTime @default(now())
+}
+
+model Lead {
+  id               String   @id
+  fullName         String
+  mobileNumber     String
+  grossWeightGrams Float
+  netWeightGrams   Float
+  karat            Int
+  goldValue        Int
+  eligibleLoan     Int
+  schemeId         String
+  status           String   @default("SUBMITTED")
+  createdAt        DateTime @default(now())
+}
